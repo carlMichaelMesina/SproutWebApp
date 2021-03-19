@@ -1,0 +1,63 @@
+﻿@model SproutWebApp.Models.Employee
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Employee</title>
+
+</head>
+<body>
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6"><h2><b>New</b> Employee</h2></div>
+                <div class="col-sm-6"></div>
+            </div>
+        </div>
+        @using (Html.BeginForm("SaveEmployee", "Employee", FormMethod.Post))
+        {
+            @Html.TextBoxFor(model => model.Name, new { placeholder = "Full Name" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(model => model.Birthdate, new { placeholder = "Birthdate", id = "txtBirthdate" })
+            @Html.ValidationMessageFor(model => model.Birthdate, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(model => model.TIN, new { placeholder = "TIN" })
+            @Html.ValidationMessageFor(model => model.TIN, "", new { @class = "text-danger" })
+
+            @Html.TextBoxFor(model => model.Salary, new { placeholder = "Basic Salary" })
+            @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.Label("EmployeeType", "Type", htmlAttributes: new { @class = "control-label col-md-2", })
+                <div class="col-md-10">
+                    @Html.RadioButtonFor(model => model.EmployeeType, "R")
+                    Regular&nbsp;
+                    @Html.RadioButtonFor(model => model.EmployeeType, "C")
+                    Contractual
+                </div>
+                 @Html.ValidationMessageFor(model => model.EmployeeType, "", new { @class = "text-danger" })
+            </div><br />
+            <div class="form-group">
+                <input id="btnAdd" class="btn btn-success" type="submit" value=" Submit ">
+                @Html.ActionLink(" Back ", "ViewAllEmployees", new { id = "btnBack" }, new { @class = "btn btn-primary" })
+            </div>
+        }
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#txtBirthdate").datepicker
+                ({
+                    dateFormat: "mm/dd/yy",
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-100:+0"
+                });
+        });
+    </script>
+
+</body>
+</html> 

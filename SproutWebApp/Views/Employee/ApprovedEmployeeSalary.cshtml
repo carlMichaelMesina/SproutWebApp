@@ -1,0 +1,56 @@
+﻿@model SproutWebApp.Models.Employee
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Employee</title>
+
+</head>
+<body>
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6"><h2><b>Calculate</b> Salary</h2></div>
+                <div class="col-sm-6"></div>
+            </div>
+        </div>
+        Name: @Html.Label("Name", Model.Name)<br />
+        Birthdate: @Html.Label("Birthdate", Model.Birthdate.ToShortDateString())<br />
+        TIN: @Html.Label("TIN", Model.TIN)<br />
+
+        Employee Type: @if (Model.EmployeeType == "R")
+        {
+            @Html.Label("Type", "Regular")
+        }
+        else
+        {
+            @Html.Label("Type", "Contractual")
+        }<br />
+
+        Basic Salary: @Html.Label("BasicSalary", "PHP " + Convert.ToDecimal(Model.Salary).ToString("N"))<br />
+
+        @if (Model.EmployeeType == "R")
+        {
+            <div>Number of Absent:
+            @Html.Label("Type", Model.Absences.ToString())</div>
+        }
+        else
+        {
+            <div>Number of Working Days:
+            @Html.Label("Type", Model.Attendance.ToString())</div>
+        }
+
+        Computed Salary: @Html.Label("ComputedSalary", "PHP " + Convert.ToDecimal(Model.ComputedSalary).ToString("N"))<br />
+
+        <div class="form-group">
+            @Html.ActionLink(" Back ", "ViewAllEmployees", new { id = "btnBack" }, new { @class = "btn btn-primary" })
+        </div>
+
+    </div>
+
+</body>
+</html> 
