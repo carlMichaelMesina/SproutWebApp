@@ -35,6 +35,8 @@
 
         @using (Html.BeginForm("ApprovedEmployeeSalary", "Employee", new { employeeID = Model.EmployeeId }, FormMethod.Post))
         {
+            @Html.HiddenFor(model => model.EmployeeId)
+            @Html.HiddenFor(model => model.EmployeeType)
             @if (Model.EmployeeType == "R")
             {
                 <div>Number of Absences: @Html.TextBoxFor(model => model.Absences, new { placeholder = "Number of Absences" })</div>

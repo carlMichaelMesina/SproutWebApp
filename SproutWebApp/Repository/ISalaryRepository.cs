@@ -6,7 +6,7 @@ namespace SproutWebApp.Repository
 {
     public interface ISalaryRepository
     {
-        Employee SaveSalary(ISession session, Employee employee, long employeeID);
+        ComputeSalary GetSalaryComputation(ISession session, Employee employee);
     }
 
 }

@@ -45,15 +45,16 @@ namespace SproutWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult ApprovedEmployeeSalary(Employee employee, long employeeID)
+        public IActionResult ApprovedEmployeeSalary(Employee employee)
         {
-
-            return View(_contextSalary.SaveSalary(HttpContext.Session, employee, employeeID));
+            ComputeSalary computeSalary = _contextSalary.GetSalaryComputation(HttpContext.Session, employee);
+            return View(computeSalary.ComputeEmployeeSalary());
         }
         public IActionResult ReviewEmployeeSalary(long employeeID)
         {
             _contextEmployee.GetEmployeeSession(HttpContext.Session);
             return View("ApprovedEmployeeSalary", _contextEmployee.GetEmployee(employeeID));
+            
         }
     }
 }
